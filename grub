@@ -1,0 +1,1 @@
+GRUB_CMDLINE_LINUX_DEFAULT="iommu=pt amd_iommu=on nowatchdog isolcpus=8-15,24-31 ipv6.disable=1 ignore_resource_conflict=1 clocksource=tsc tsc=reliable systemd.unified_cgroup_hierarchy=1 vfio_iommu_type1.allow_unsafe_interrupts=1 default_hugepagesz=1G hugepagesz=1G"

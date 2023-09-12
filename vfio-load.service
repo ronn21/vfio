@@ -1,0 +1,10 @@
+# file: /etc/systemd/system/vfio-load.service [644]
+[Unit]
+Description=Insert vfio-pci driver
+
+[Service]
+Type=oneshot
+ExecStart=modprobe -i vfio-pci
+
+[Install]
+WantedBy=multi-user.target

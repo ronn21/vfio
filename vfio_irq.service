@@ -1,0 +1,12 @@
+[Unit]
+Description=User logon
+After=network-online.target
+After=libvirtd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/bash /home/arch/irq.sh
+
+[Install]
+WantedBy=multi-user.target

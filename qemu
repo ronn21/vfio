@@ -1,0 +1,30 @@
+vmname=$1
+command=$2
+
+if [ "$command" = "prepare" ]; then
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-7,16-23
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-7,16-23
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0-7,16-23
+    echo performance > /sys/devices/system/cpu/cpu8/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu9/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu10/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu11/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu12/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu13/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu14/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu15/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu24/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu25/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu26/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu27/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu28/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu29/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu30/cpufreq/scaling_governor
+    echo performance > /sys/devices/system/cpu/cpu31/cpufreq/scaling_governor
+elif [ "$command" = "started" ]; then
+    systemd-run --on-active=35 --unit vfio_irq.service
+elif [ "$command" = "release" ]; then
+     systemctl set-property --runtime -- system.slice AllowedCPUs=0-7,16-23
+     systemctl set-property --runtime -- user.slice AllowedCPUs=0-7,16-23
+     systemctl set-property --runtime -- init.scope AllowedCPUs=0-7,16-23
+fi
